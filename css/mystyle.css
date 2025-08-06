@@ -80,4 +80,14 @@ h1{
             font-size: 60px;
             font-family: Georgia, 'Times New Roman', Times, serif;
         }
-
+.b_shadow{
+            box-shadow: 4px 6px 8px orange;
+        }
+        .d_shadow{
+            filter:drop-shadow(4px 6px 10px green);
+            
+        }
+        .d_shado{
+             filter:drop-shadow(4px 6px 8px purple);
+             
+        }
