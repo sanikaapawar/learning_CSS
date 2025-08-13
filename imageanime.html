@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+
+
+         .text-container{
+            height: 80px;
+            box-shadow: 0px 5px 8px papayawhip;
+            background: linear-gradient(to right,white,orange,white,orange);
+            background-clip: text;
+            color: transparent;
+            transform-origin: left to right;
+            transform: rotateX(-30deg);
+            animation: getup 5s infinite;
+            height: 500px;
+            width: 700px;
+
+         }
+          .text-container{animation-delay: 0s;}
+           
+
+               @keyframes getup{
+                0%{transform: rotate(7deg);}
+                100%{transform: rotate(-7deg);}
+                
+               }
+               .swing img{
+                width: 200px;
+                border:5px 3px 10px black
+               }
+
+    </style>
+
+</head>
+<body>
+    <div class="text-container swing">
+    <center>   <img src="images/flower.jpg" height="120px" width="210px" ></center>
+    </div>
+</body>
+</html>
