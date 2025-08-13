@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            height: 150px;
+            width: 150px;
+            background-color: red;
+            position: relative;
+            animation: firstanimation;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-delay: 3s;
+            animation-direction: alternate-reverse;
+
+
+
+        }
+
+        @keyframes firstanimation
+        {
+            0%{background-image: url('/images/sofa.jpeg' );left: 0px;top:0px}
+             25%{background-color: green;left: 300px;top:0px}
+              50%{background-color: gold;left: 300px;top:300px}
+               75%{background-image: url('/images/sofa.jpeg' )}
+               100%{background-color:blue;left: 0px;top:0px}
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

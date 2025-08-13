@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+        background-color:antiquewhite;
+        
+    }
+    .flex-container1 {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-top: 100px;
+      
+    }
+      
+    .card {
+      width: 350px;
+      height: 250px;
+      margin: 10px;
+    }
+
+    .c1 {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 1.5s;
+      transform-style: preserve-3d;
+    }
+
+    .card:hover .c1 {
+      transform: rotateY(180deg);
+    }
+
+    .card-front {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    
+      border: 4px solid black;
+      box-shadow: 4px 6px 4px mediumaquamarine;
+      
+    }
+    .card-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-back {
+      background-color: gold;
+      transform: rotateY(180deg);
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      
+      border: 4px solid black;
+       box-shadow: 4px 6px 8px darkred;
+    }
+
+    .card-back img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="flex-container1">
+    <div class="card">
+      <div class="c1">
+        <div class="card-front">
+          <img src="images/flower.jpg"  />
+         
+        </div>
+        <div class="card-back">
+          <img src="images/i1.png" />
+          
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="c1">
+        <div class="card-front">
+          <img src="images/orange.jpg" />
+          
+        </div>
+        <div class="card-back">
+          <img src="images/flower.jpg">
+          
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="c1">
+        <div class="card-front">
+          <img src="images/i105.jpg"/>
+         
+        </div>
+        <div class="card-back">
+          <img src="images/pizza.jpg" />
+          
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="c1">
+        <div class="card-front">
+          <img src="images/i101.png" />
+          
+        </div>
+        <div class="card-back">
+          <img src="/images/i1.png" />
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

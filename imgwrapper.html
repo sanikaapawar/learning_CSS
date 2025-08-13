@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .img-wrapper{
+            width: 200px;
+            height:150px;
+            border: 2px double yellowgreen;
+            position: relative;
+            overflow: hidden;
+        }
+        .box{
+           
+            width: 200px;
+            height: 200px;
+            margin: 50px;
+            color: black;
+            text-align: center;
+            font-size : 40px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            transition : transform 5s ease;
+        }
+        .flex-container{
+            display:flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+        }
+        .box1:hover{
+            transform: translate(125px,125px);
+        }
+        .box2:hover{
+            transform: translate(125px);
+        }
+        .box3:hover{
+            transform: translateY(225px);
+        }
+        .box4:hover{
+            transform: rotate(400deg);
+        }
+         .box5:hover{
+            transform: skewX(50deg);
+        }
+         .box6:hover{
+            transform: skewY(50deg);
+        }
+        .box7:hover{
+            transform: skew(40deg,40deg);
+        }
+        .box8:hover{
+            transform: scale(1.5);
+        }
+        .box9:hover{
+            transform: scale(2) rotate(90deg) translate(100px);
+        }
+        .inner-img:hover{
+            transform:scale(1.5);
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="flex-container">
+
+    <div class="box box1"><img src="images/orange.jpg"/> </div>
+    
+    <div class="box box2">
+        <img src="images/sofa.jpeg"/>
+    </div>
+    <div class="box box3">
+        <img src="images/pizza.jpg"/>
+    </div>
+    <div class="box box4">
+        <img src="images/f4.jpg"/>
+    </div>
+    <div class="box box5">
+        <img src="images/f5.jpg"/>
+    </div>
+    <div class="box box6">
+        <img src="images/f6.jpg"/>
+    </div>
+    <div class="box box7">
+        <img src="images/f7.jpg"/>
+    </div>
+    <div class="box box8">
+        <img src="images/f8.jpg"/>
+    </div>
+    <div class="box box9">
+        <img src="images/f1.jpg"/>
+    </div>
+    </div>
+    <div class="img-wrapper">
+        <img src="images/f7.jpg" class="inner-img" alt="flower"/>
+    </div>
+</body>
+</html>

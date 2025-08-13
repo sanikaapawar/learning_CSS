@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            height: 150px;
+            width: 150px;
+            background-color: red;
+            position: relative;
+            animation: firstanimation;
+            -webkit-animation: firstanimation;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-delay: 3s;
+            animation-direction: alternate-reverse;
+            background-position: center;
+            background-size: cover;
+
+
+
+        }
+
+        @keyframes firstanimation
+        {
+            0%{background-image:url('images/pizza.jpg') ;}
+             25%{background-image:url('images/pizza.jpg');}
+              50%{background-image:url('images/iii.jpg');}
+               75%{background-image:url('images/i1.jpg');}sss
+               100%{background-image:url('images/flower.jpg');}
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

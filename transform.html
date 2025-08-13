@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+ .flex-container{
+            display: flex;
+            
+            flex-direction: row row-reverse;
+            flex-wrap: wrap;
+            justify-content:space-between;
+            align-items: center;
+            list-style: none;
+        }
+      
+
+.box{
+    width: 300px;
+    height: 200px;
+    background-color: orchid;
+    border: 4px solid black;
+    text-align: center;
+    margin-bottom: 10px;
+     size: 90px;
+    align-items: center;
+    transition: transform 6s ease;
+    
+}
+
+.box1:hover{
+    transform: translate(325px,125px);
+    /* 125px=x-axis,125=y-axis */
+}
+.box2:hover{
+    transform: translate(159px);
+  
+}
+.box3:hover{
+    transform: translate(259px);
+  
+}
+.box4:hover{
+    transform: rotate(180deg);
+  
+}.box5:hover{
+    transform: skewX(20deg);
+  
+}
+.box6:hover{
+    transform: skewY(20deg);
+  
+}
+.box7:hover{
+    transform: skew(20deg,20deg);
+  
+}
+.box8:hover{
+    transform: scale(4);
+  
+}
+.box9:hover{
+    transform: scale(4) rotate(90deg);
+  
+}
+.img-wrapper{
+    width: 300px;
+    height: 250px;
+    border:2px solid rebeccapurple;
+    position: relative;
+    overflow: hidden;
+}
+
+.inner-img{
+     width: 100%;
+    height: 100%;
+    transform: 3s;
+}
+.inner-img:hover{
+    transform: scale(1.5);
+}
+.inner-img1{
+     width: 100%;
+    height: 100%;
+    transform: skewY(20deg);
+}
+  
+    </style>
+</head>
+<body>
+    
+    
+
+   
+    <div class="flex-container">
+     
+<!-- ul.flex-container>li.flex-items*10 -->
+<div class="flex-container">
+<div class="box box1 ">translate xand y</div>
+<div class="box box2"> translate x</div>
+<div class="box box3">translate y</div>
+<div class="box box4">rotate</div>
+<div class="box box5">skewX</div>
+<div class="box box6">skewY</div>
+<div class="box box7">skew</div>
+<div class="box box8">scale</div>
+<div class="box box9">multiple</div>
+   
+
+     
+  
+    <div class="img-wrapper">
+        <img src="images/orange.jpg" class="inner-img" alt="orange">
+    </div>
+
+     <div class="img-wrapper">
+        <img src="images/orange.jpg" class="inner-img1" alt="orange">
+    </div>
+</div>
+
+</body>
+</html>

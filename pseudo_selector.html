@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+          
+            text-align: center;
+            text-shadow: 18px 25px 3px grey;
+            color: black;
+            font-size: 60px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        h1:hover{
+            
+            text-align: center;
+            text-shadow: 20px 28px 5px grey;
+            color: black;
+            font-size: 100px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+
+        }
+         .flex-items img{
+            background-color: brown;
+            margin: 10px;
+            width:390px;
+            height:220px;
+            color:white;
+            text-align: center;
+            font-size: 40px;
+            
+               
+        }
+        .flex-container{
+            display: flex;
+            
+            flex-direction: row row-reverse;
+            flex-wrap: wrap;
+            justify-content:space-between;
+            align-items: center;
+            list-style: none;
+        }
+        img:hover{
+            width:780px;
+            height:460px;
+             border: 6px solid black;
+               box-shadow: 2px 3px 4px orange;
+               left: 200px;
+        }
+        input:focus{
+            background-color: black;
+            color: aliceblue;
+        }
+        a:visited{
+            color: crimson;
+        }
+        h5:active{
+            color: mediumspringgreen;
+            text-transform: lowercase;
+        }
+        p::first-letter{
+            color: blue;
+            font-size: 80px;
+        }
+         p::first-line{
+            color:mediumvioletred;
+            font-family: Arial, Helvetica, sans-serif;
+            
+        }
+        ::selection{
+            color: aqua;
+            background-color: crimson;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>
+        welcome
+    </h1>
+
+    <p>
+Mages are not technically inserted into a web page; images are linked to web pages. The <img> tag creates a holding space for the referenced image.
+
+
+
+src - Specifies the path to the image
+alt - Specifies an alternate text for the image, if the image for some reason cannot be displayed
+Note: Also, always specify the width and height of an image. If width and height are not specified, the page might flicker while the image loads.
+
+Tip: To link an image to another document, simply nest the 
+    </p>
+    <h3>
+Mages are not technically inserted into a web page; images are linked to web pages. The <img> tag creates a holding space for the referenced image.
+
+
+
+src - Specifies the path to the image
+alt - Specifies an alternate text for the image, if the image for some reason cannot be displayed
+Note: Also, always specify the width and height of an image. If width and height are not specified, the page might flicker while the image loads.
+
+Tip: To link an image to another document, simply nest the 
+    </h3>
+    <a href="https://www.w3schools.com/tags/tag_img.asp"><h2>click here(when you visited colour is hnage)</h2></a>
+     <ul class="flex-container">
+       
+     
+<!-- ul.flex-container>li.flex-items*10 -->
+    <li class="flex-items"> <img src="images/orange.jpg"  ></li>
+    <li class="flex-items"><img src="images/pizza.jpg"  ></li>
+</ul>
+<input type="text" placeholder="enter name">
+     <h5>PSEOUDO SELECTOR</h5>
+</body>
+</html>
