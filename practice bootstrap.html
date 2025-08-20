@@ -1,0 +1,367 @@
+<!-- <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Experience the Music – Singer Portfolio</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Fonts (optional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-dark:#1b100e;
+      --brand:#7a2e1e; /* warm brown-red */
+      --brand-2:#c06b3e; /* accent */
+      --paper:#f5ece4; /* beige background */
+    }
+    html,body{scroll-behavior:smooth;}
+    body{
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      background: var(--paper);
+      color:#1c1c1c;
+    }
+    .section-title{
+      font-family: "Playfair Display", serif;
+      font-weight:700;
+      font-size: clamp(1.6rem, 2.5vw, 2.25rem);
+      letter-spacing:.2px;
+      color: var(--brand-dark);
+    }
+    /* Navbar */
+    .navbar{background: #0f0a09ee; backdrop-filter:saturate(180%) blur(8px);} 
+    .navbar .nav-link{color:#fff; opacity:.9}
+    .navbar .nav-link:hover, .navbar .nav-link:focus{opacity:1}
+    .btn-brand{background:var(--brand); color:#fff; border:none}
+    .btn-brand:hover{background:#5f2217; color:#fff}
+
+    /* Hero */
+    .hero{
+      position:relative;
+      min-height: 74vh;
+      display:grid;
+      place-items:center;
+      color:#fff;
+      text-align:left;
+      isolation:isolate;
+    }
+    .hero::before{
+      content:""; position:absolute; inset:0;
+      background:url("https://images.unsplash.com/photo-1521335629791-ce4aec67dd53?q=80&w=1600&auto=format&fit=crop") center/cover no-repeat;
+      z-index:-2;
+    }
+    .hero::after{
+      content:""; position:absolute; inset:0; 
+      background: linear-gradient(180deg, #000000aa, #000000aa);
+      z-index:-1;
+    }
+    .hero h1{
+      font-family:"Playfair Display", serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height:1.1;
+      margin-bottom:1rem;
+    }
+    .hero p{max-width: 55ch; opacity:.95}
+
+    /* Cards */
+    .song-card img{aspect-ratio: 4/3; object-fit: cover;}
+    .rounded-2xl{border-radius:1.25rem;}
+
+    /* About */
+    .about-photo{aspect-ratio: 4/3; object-fit: cover; border-radius:1rem}
+
+    /* Gallery */
+    .gallery-img{width:100%; aspect-ratio: 3/2; object-fit: cover; border-radius: .75rem;}
+
+    /* Footer */
+    footer{background:#0f0a09; color:#fff}
+    .social a{display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; background:#ffffff18; color:#fff; text-decoration:none}
+    .social a:hover{background:#ffffff30}
+
+    /* Utilities */
+    .shadow-soft{box-shadow: 0 10px 30px rgba(0,0,0,.12)}
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-semibold text-white" href="#home">Singer<span class="text-warning">.</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" style="filter: invert(1)"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#songs">Songs</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#tour">Concerts</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item"><a class="btn btn-sm btn-brand ms-lg-2" href="#songs">Listen</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" class="hero d-flex align-items-center">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-7 col-xl-6">
+          <h1>Experience the Music</h1>
+          <p class="lead mb-4">Live vocals. Honest lyrics. Warm acoustic tones. Discover the latest singles and upcoming shows.</p>
+          <div class="d-flex gap-3">
+            <a href="#songs" class="btn btn-brand btn-lg rounded-pill px-4">Listen Now</a>
+            <a href="#tour" class="btn btn-outline-light btn-lg rounded-pill px-4">See Tour Dates</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- FEATURED SONGS -->
+  <section id="songs" class="py-5 py-md-6">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-end mb-3">
+        <h2 class="section-title mb-0">Featured Songs</h2>
+        <a href="#" class="text-decoration-none">See all →</a>
+      </div>
+      <div class="row g-4">
+        <!-- Song 1 -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card song-card border-0 rounded-2xl shadow-soft h-100">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1549221984-3a6b8004f3d1?q=80&w=1200&auto=format&fit=crop" alt="Song cover 1">
+            <div class="card-body">
+              <h5 class="card-title mb-1">Song Title One</h5>
+              <p class="card-text text-muted small">Acoustic · 3:42</p>
+              <button class="btn btn-brand" data-bs-toggle="modal" data-bs-target="#playerOne">Play</button>
+            </div>
+          </div>
+        </div>
+        <!-- Song 2 -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card song-card border-0 rounded-2xl shadow-soft h-100">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1200&auto=format&fit=crop" alt="Song cover 2">
+            <div class="card-body">
+              <h5 class="card-title mb-1">Song Title Two</h5>
+              <p class="card-text text-muted small">Indie · 4:05</p>
+              <button class="btn btn-brand" data-bs-toggle="modal" data-bs-target="#playerTwo">Play</button>
+            </div>
+          </div>
+        </div>
+        <!-- Song 3 -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card song-card border-0 rounded-2xl shadow-soft h-100">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1200&auto=format&fit=crop" alt="Song cover 3">
+            <div class="card-body">
+              <h5 class="card-title mb-1">Song Title Three</h5>
+              <p class="card-text text-muted small">Folk · 3:18</p>
+              <button class="btn btn-brand" data-bs-toggle="modal" data-bs-target="#playerThree">Play</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-5">
+    <div class="container">
+      <div class="row align-items-center g-4 g-lg-5">
+        <div class="col-lg-6">
+          <img class="about-photo w-100 shadow-soft" src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=1400&auto=format&fit=crop" alt="Singer portrait">
+        </div>
+        <div class="col-lg-6">
+          <h2 class="section-title">About</h2>
+          <p class="lead">I’m an indie singer-songwriter blending acoustic warmth with intimate storytelling. My live shows are cozy, energetic, and always personal.</p>
+          <p>From open mics to sold-out living-room tours, I write music about home, distance, and the tiny lightning-bolt moments in between. New EP out now across platforms.</p>
+          <div class="d-flex gap-3 mt-3">
+            <a class="btn btn-brand" href="#contact">Hire for a Show</a>
+            <a class="btn btn-outline-dark" href="#gallery">View Gallery</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOUR DATES / CONCERTS -->
+  <section id="tour" class="py-5">
+    <div class="container">
+      <h2 class="section-title mb-4">Upcoming Concerts</h2>
+      <div class="table-responsive rounded-2xl shadow-soft">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">City</th>
+              <th scope="col">Venue</th>
+              <th scope="col" class="text-end">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Oct 05, 2025</td>
+              <td>Mumbai, IN</td>
+              <td>Blue Note Café</td>
+              <td class="text-end"><a href="#contact" class="btn btn-sm btn-brand">Notify Me</a></td>
+            </tr>
+            <tr>
+              <td>Oct 19, 2025</td>
+              <td>Pune, IN</td>
+              <td>Indie Yard</td>
+              <td class="text-end"><a href="#contact" class="btn btn-sm btn-brand">Notify Me</a></td>
+            </tr>
+            <tr>
+              <td>Nov 02, 2025</td>
+              <td>Bengaluru, IN</td>
+              <td>The Humming Tree</td>
+              <td class="text-end"><a href="#contact" class="btn btn-sm btn-brand">Notify Me</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="py-5">
+    <div class="container">
+      <h2 class="section-title mb-4">Gallery</h2>
+      <div class="row g-3 g-md-4">
+        <div class="col-6 col-md-4 col-lg-3"><img class="gallery-img shadow-soft" src="https://images.unsplash.com/photo-1552143130-8b90e6a6a938?q=80&w=1200&auto=format&fit=crop" alt="Live 1"></div>
+        <div class="col-6 col-md-4 col-lg-3"><img class="gallery-img shadow-soft" src="https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=1200&auto=format&fit=crop" alt="Live 2"></div>
+        <div class="col-6 col-md-4 col-lg-3"><img class="gallery-img shadow-soft" src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=1200&auto=format&fit=crop" alt="Live 3"></div>
+        <div class="col-6 col-md-4 col-lg-3"><img class="gallery-img shadow-soft" src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200&auto=format&fit=crop" alt="Live 4"></div>
+        <div class="col-6 col-md-4 col-lg-3"><img class="gallery-img shadow-soft" src="https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?q=80&w=1200&auto=format&fit=crop" alt="Live 5"></div>
+        <div class="col-6 col-md-4 col-lg-3"><img class="gallery-img shadow-soft" src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=1200&auto=format&fit=crop" alt="Live 6"></div>
+        <div class="col-6 col-md-4 col-lg-3"><img class="gallery-img shadow-soft" src="https://images.unsplash.com/photo-1461784121038-f088ca1e7714?q=80&w=1200&auto=format&fit=crop" alt="Live 7"></div>
+        <div class="col-6 col-md-4 col-lg-3"><img class="gallery-img shadow-soft" src="https://images.unsplash.com/photo-1518972559570-7cc1309f3229?q=80&w=1200&auto=format&fit=crop" alt="Live 8"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / NEWSLETTER -->
+  <section id="contact" class="py-5 py-lg-6">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6">
+          <h2 class="section-title">Stay in the Loop</h2>
+          <p class="mb-4">Join the mailing list for new songs, behind-the-scenes stories, and early access to tickets.</p>
+          <form class="row gy-2 gx-2">
+            <div class="col-12 col-md-7">
+              <label class="visually-hidden" for="email">Email</label>
+              <input id="email" type="email" class="form-control form-control-lg" placeholder="Enter your email" required>
+            </div>
+            <div class="col-12 col-md-5 d-grid">
+              <button class="btn btn-brand btn-lg" type="submit">Subscribe</button>
+            </div>
+          </form>
+
+          <div class="d-flex gap-2 mt-4 social">
+            <!-- Inline SVG icons to avoid extra libraries -->
+            <a aria-label="Instagram" href="#" title="Instagram">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 2C4.239 2 2 4.239 2 7v10c0 2.761 2.239 5 5 5h10c2.761 0 5-2.239 5-5V7c0-2.761-2.239-5-5-5H7zm0 2h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3zm11 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM12 7a5 5 0 1 0 .001 10.001A5 5 0 0 0 12 7zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>
+            </a>
+            <a aria-label="YouTube" href="#" title="YouTube">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.008 3.008 0 0 0-2.117-2.129C19.282 3.5 12 3.5 12 3.5s-7.282 0-9.381.557A3.008 3.008 0 0 0 .502 6.186 31.84 31.84 0 0 0 0 12a31.84 31.84 0 0 0 .502 5.814 3.008 3.008 0 0 0 2.117 2.129C4.718 20.5 12 20.5 12 20.5s7.282 0 9.381-.557a3.008 3.008 0 0 0 2.117-2.129A31.84 31.84 0 0 0 24 12a31.84 31.84 0 0 0-.502-5.814zM9.75 15.568V8.432L15.818 12 9.75 15.568z"/></svg>
+            </a>
+            <a aria-label="Spotify" href="#" title="Spotify">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 1.998C6.486 1.998 2 6.484 2 12s4.486 10.002 10 10.002S22 17.516 22 12 17.514 1.998 12 1.998zm4.626 14.713a.748.748 0 0 1-1.027.25c-2.8-1.713-6.33-2.1-10.487-1.152a.75.75 0 1 1-.33-1.462c4.52-1.022 8.387-.585 11.45 1.312.353.216.465.678.24 1.052zm1.37-3.147a.936.936 0 0 1-1.283.312c-3.207-1.96-8.101-2.533-11.9-1.39a.937.937 0 1 1-.539-1.798c4.272-1.282 9.6-.642 13.246 1.553a.936.936 0 0 1 .476 1.323zM18.1 9.966a1.12 1.12 0 0 1-1.537.375c-3.662-2.232-9.24-2.437-12.567-1.343a1.12 1.12 0 1 1-.68-2.143c3.884-1.233 10.03-1.001 14.248 1.545a1.12 1.12 0 0 1 .536 1.566z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="ratio ratio-16x9 rounded-2xl overflow-hidden shadow-soft">
+            <iframe src="https://www.youtube.com/embed/CTFzCzYq9m0" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="pt-5 pb-4">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-md-6">
+          <h5 class="mb-1 text-white">Singer<span class="text-warning">.</span></h5>
+          <p class="text-white-50 mb-0">© <span id="year"></span> All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <a class="text-white-50 text-decoration-none me-3" href="#about">About</a>
+          <a class="text-white-50 text-decoration-none me-3" href="#tour">Concerts</a>
+          <a class="text-white-50 text-decoration-none" href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SONG PLAYER MODALS (use local/real MP3 files if you have) -->
+  <div class="modal fade" id="playerOne" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Song Title One</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <audio controls class="w-100">
+            <source src="" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+          <p class="small text-muted mt-2">Replace the source with your MP3 file.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="playerTwo" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Song Title Two</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <audio controls class="w-100">
+            <source src="" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+          <p class="small text-muted mt-2">Replace the source with your MP3 file.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="playerThree" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Song Title Three</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <audio controls class="w-100">
+            <source src="" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+          <p class="small text-muted mt-2">Replace the source with your MP3 file.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html> -->

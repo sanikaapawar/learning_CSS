@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Learnify – Online Course Platform (Pure CSS)</title>
+  <style>
+    /* =====================
+       Design Tokens
+    ====================== */
+    :root{
+      --max-w: 1200px;
+      --gap: 1rem;
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(16,24,40,.12);
+      --ink:#0b1021;
+      --muted:#667085;
+      --paper:#f6f7fb;
+      --card:#ffffff;
+      --primary:#0d6efd; /* you can change palette here */
+      --primary-600:#0b5ed7;
+      --accent:#845ef7;
+      --warning:#f59e0b;
+    }
+
+    /* Reset & base */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, sans-serif; color:var(--ink); background:var(--paper)}
+    img{max-width:100%; display:block}
+    a{color:inherit}
+
+    /* Container */
+    .container{max-width:var(--max-w); margin-inline:auto; padding: 0 1rem}
+
+    /* Buttons */
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:.8rem 1.1rem; border-radius:999px; border:1px solid transparent; cursor:pointer; text-decoration:none; font-weight:600}
+    .btn:focus-visible{outline:3px solid color-mix(in srgb, var(--primary) 25%, transparent)}
+    .btn-primary{background:var(--primary); color:#fff}
+    .btn-primary:hover{background:var(--primary-600)}
+    .btn-outline{background:transparent; color:var(--primary); border-color:var(--primary)}
+    .btn-outline:hover{background:color-mix(in srgb, var(--primary) 10%, #fff)}
+    .btn-muted{background:#e7eaf4}
+
+    /* Pills */
+    .pill{border-radius:999px; border:1px solid #d0d5dd; padding:.5rem .9rem; background:#fff; color:#344054; text-decoration:none; display:inline-block}
+    .pill.active{background:var(--ink); color:#fff; border-color:var(--ink)}
+
+    /* Card */
+    .card{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
+    .card-body{padding:1rem 1.1rem}
+
+    /* Section title */
+    .section-title{font-family: ui-serif, Georgia, "Times New Roman", serif; font-weight:800; font-size:clamp(1.6rem,2.5vw,2.2rem); margin:0 0 .5rem}
+
+    /* =============== NAVBAR =============== */
+    .nav{position:fixed; inset-inline:0; top:0; z-index:1000; background:rgba(11,16,33,.92); backdrop-filter:saturate(180%) blur(8px); border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .brand{color:#fff; font-weight:700; text-decoration:none}
+    .nav-links{display:flex; gap:1rem}
+    .nav-links a{color:#e7e9f3; text-decoration:none; opacity:.9}
+    .nav-links a:hover{opacity:1}
+    /* Mobile nav */
+    #menu-toggle{display:none}
+    .hamburger{display:none; width:40px; height:40px; align-items:center; justify-content:center; border-radius:10px; border:1px solid rgba(255,255,255,.18); color:#fff; background:transparent}
+    @media (max-width: 900px){
+      .nav-links{position:fixed; top:64px; inset-inline:0; background:rgba(11,16,33,.98); flex-direction:column; padding:1rem; transform: translateY(-120%); transition:transform .25s ease; border-bottom:1px solid rgba(255,255,255,.06)}
+      #menu-toggle:checked + label + .nav-links{transform: translateY(0)}
+      .hamburger{display:inline-flex}
+    }
+
+    /* =============== HERO =============== */
+    .hero{position:relative; min-height:72vh; display:grid; place-items:center; color:#fff; text-wrap:balance}
+    .hero::before{content:""; position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1529101091764-c3526daf38fe?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat; z-index:-2}
+    .hero::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, #0b1021cc, #0b1021cc); z-index:-1}
+    .hero .content{padding: 6rem 0 3rem}
+    .hero h1{font-family: ui-serif, Georgia, serif; font-size:clamp(2rem,5vw,3.5rem); line-height:1.1; margin:.2rem 0 1rem}
+    .searchbar{display:grid; grid-template-columns: 1fr auto; gap:.5rem; background:#fff; padding:.5rem; border-radius:999px; box-shadow:var(--shadow); max-width:680px}
+    .searchbar input{border:0; padding:.9rem 1rem; border-radius:999px; min-width:0}
+    .searchbar input:focus{outline: none}
+
+    /* =============== CATEGORIES =============== */
+    .categories{background:#fff; border-block:1px solid #e4e7ef}
+    .pill-row{display:flex; flex-wrap:wrap; gap:.6rem; padding:1rem 0}
+
+    /* =============== GRID: COURSES =============== */
+    .grid{display:grid; gap:var(--gap)}
+    .grid.courses{grid-template-columns: repeat(12, 1fr)}
+    .grid.courses > *{grid-column: span 6}
+    @media (min-width: 700px){ .grid.courses > *{grid-column: span 4} }
+    @media (min-width: 992px){ .grid.courses > *{grid-column: span 3} }
+    .course-card img{aspect-ratio:16/9; object-fit:cover; width:100%}
+    .rating{color:var(--warning); letter-spacing:.05em}
+
+    /* =============== FEATURES =============== */
+    .features{background:#fff}
+    .feature-grid{display:grid; gap:var(--gap)}
+    @media (min-width: 900px){ .feature-grid{grid-template-columns: 1fr 1fr} }
+    .feature-item{padding:1.2rem; border-radius:var(--radius); box-shadow:var(--shadow); background:#fff}
+    .icon{width:48px; height:48px; display:inline-grid; place-items:center; border-radius:12px; background:#eef2ff; margin-bottom:.6rem}
+
+    /* =============== TESTIMONIALS =============== */
+    .carousel{position:relative}
+    .slides{overflow:hidden; border-radius:var(--radius); box-shadow:var(--shadow); background:#fff}
+    .slide{padding:2rem; display:none}
+    .slide.active{display:block}
+    .carousel button{position:absolute; top:50%; translate:0 -50%; width:44px; height:44px; border-radius:50%; border:1px solid #d0d5dd; background:#fff; cursor:pointer}
+    .carousel .prev{left:-10px}
+    .carousel .next{right:-10px}
+
+    /* =============== PRICING =============== */
+    .pricing{background:#fff}
+    .pricing-grid{display:grid; gap:var(--gap)}
+    @media (min-width: 900px){ .pricing-grid{grid-template-columns: repeat(3,1fr)} }
+    .price-card{padding:1.2rem; border-radius:var(--radius); box-shadow:var(--shadow); background:#fff; display:flex; flex-direction:column; justify-content:space-between}
+    .price-card h3{margin:.2rem 0 1rem}
+    .price-card ul{padding-left:1.2rem}
+
+    /* =============== INSTRUCTORS =============== */
+    .instructors .grid{grid-template-columns: repeat(12, 1fr)}
+    .instructors .grid > *{grid-column: span 6}
+    @media (min-width: 700px){ .instructors .grid > *{grid-column: span 4} }
+    @media (min-width: 992px){ .instructors .grid > *{grid-column: span 3} }
+    .instructor.card img{aspect-ratio:1/1; object-fit:cover}
+
+    /* =============== FAQ =============== */
+    details{background:#fff; border-radius:var(--radius); padding:1rem 1.1rem; box-shadow:var(--shadow)}
+    details + details{margin-top:var(--gap)}
+    summary{cursor:pointer; font-weight:600}
+    summary::-webkit-details-marker{display:none}
+
+    /* =============== CTA / VIDEO =============== */
+    .cta-grid{display:grid; gap:var(--gap)}
+    @media (min-width: 900px){ .cta-grid{grid-template-columns: 1fr 1fr} }
+    .ratio{position:relative; width:100%; padding-top:56.25%; overflow:hidden; border-radius:var(--radius); box-shadow:var(--shadow)}
+    .ratio iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+
+    /* =============== FOOTER =============== */
+    footer{background:#0b1021; color:#cdd2e1}
+    footer a{text-decoration:none; color:#cdd2e1}
+    .footer-grid{display:grid; gap:1.2rem}
+    @media (min-width: 800px){ .footer-grid{grid-template-columns: 2fr 1fr 1fr} }
+    hr.sep{border:0; border-top:1px solid rgba(255,255,255,.15); margin:1.2rem 0}
+
+    /* Spacing helpers */
+    section{padding: clamp(2.5rem, 5vw, 4rem) 0}
+    .mb-1{margin-bottom:.25rem}
+    .mb-2{margin-bottom:.5rem}
+    .mb-3{margin-bottom:1rem}
+    .mb-4{margin-bottom:1.5rem}
+    .mt-1{margin-top:.25rem}
+    .mt-2{margin-top:.5rem}
+    .mt-3{margin-top:1rem}
+    .mt-4{margin-top:1.5rem}
+    .text-center{text-align:center}
+    .muted{color:var(--muted)}
+    .row{display:flex; gap:var(--gap); flex-wrap:wrap}
+    .grow{flex:1}
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#home">Learnify</a>
+      <input type="checkbox" id="menu-toggle" />
+      <label class="hamburger" for="menu-toggle" aria-label="Toggle menu">☰</label>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#courses">Courses</a>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-outline" href="#login">Log In</a>
+        <a class="btn btn-primary" href="#signup">Sign Up</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" class="hero">
+    <div class="container content">
+      <h1>Upgrade Your Skills, One Course at a Time</h1>
+      <p class="muted" style="max-width:60ch">Interactive lessons, hands‑on projects, and friendly mentors. Learn web dev, data, design, marketing, and more — on your schedule.</p>
+      <form class="searchbar mt-3" role="search">
+        <input type="search" placeholder="Search for courses e.g. React, Excel, UI/UX" aria-label="Search courses" />
+        <button class="btn btn-primary" type="button">Search</button>
+      </form>
+      <div class="mt-2 muted small">Popular: HTML • Python • Power BI • Canva</div>
+    </div>
+  </header>
+
+  <!-- CATEGORIES -->
+  <section class="categories">
+    <div class="container">
+      <div class="pill-row">
+        <a class="pill active" href="#courses">All</a>
+        <a class="pill" href="#courses">Web Dev</a>
+        <a class="pill" href="#courses">Data</a>
+        <a class="pill" href="#courses">Design</a>
+        <a class="pill" href="#courses">Marketing</a>
+        <a class="pill" href="#courses">Business</a>
+        <a class="pill" href="#courses">AI/ML</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES GRID -->
+  <section id="courses">
+    <div class="container">
+      <div class="row" style="align-items:flex-end; justify-content:space-between">
+        <h2 class="section-title">Trending Courses</h2>
+        <a href="#" class="muted">View all →</a>
+      </div>
+      <div class="grid courses mt-2">
+        <!-- Card 1 -->
+        <article class="card course-card">
+          <img src="https://images.unsplash.com/photo-1526378722484-bd91ca387e72?q=80&w=1200&auto=format&fit=crop" alt="Python for Data Analysis" />
+          <div class="card-body">
+            <h3 class="mb-1" style="font-size:1.05rem">Python for Data Analysis</h3>
+            <p class="muted mb-2">Beginner • 28 lessons • 6h</p>
+            <div class="row" style="justify-content:space-between; align-items:center">
+              <span class="rating">★★★★★</span>
+              <a class="btn btn-primary" href="#signup">Enroll</a>
+            </div>
+          </div>
+        </article>
+        <!-- Card 2 -->
+        <article class="card course-card">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Modern React from Scratch" />
+          <div class="card-body">
+            <h3 class="mb-1" style="font-size:1.05rem">Modern React from Scratch</h3>
+            <p class="muted mb-2">Intermediate • 35 lessons • 8h</p>
+            <div class="row" style="justify-content:space-between; align-items:center">
+              <span class="rating">★★★★☆</span>
+              <a class="btn btn-primary" href="#signup">Enroll</a>
+            </div>
+          </div>
+        </article>
+        <!-- Card 3 -->
+        <article class="card course-card">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="HTML & CSS Mastery" />
+          <div class="card-body">
+            <h3 class="mb-1" style="font-size:1.05rem">HTML & CSS Mastery</h3>
+            <p class="muted mb-2">Beginner • 22 lessons • 5h</p>
+            <div class="row" style="justify-content:space-between; align-items:center">
+              <span class="rating">★★★★★</span>
+              <a class="btn btn-primary" href="#signup">Enroll</a>
+            </div>
+          </div>
+        </article>
+        <!-- Card 4 -->
+        <article class="card course-card">
+          <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1200&auto=format&fit=crop" alt="UI/UX Design Fundamentals" />
+          <div class="card-body">
+            <h3 class="mb-1" style="font-size:1.05rem">UI/UX Design Fundamentals</h3>
+            <p class="muted mb-2">Beginner • 18 lessons • 4h</p>
+            <div class="row" style="justify-content:space-between; align-items:center">
+              <span class="rating">★★★★☆</span>
+              <a class="btn btn-primary" href="#signup">Enroll</a>
+            </div>
+          </div>
+        </article>
+        <!-- Card 5 -->
+        <article class="card course-card">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop" alt="Digital Marketing 101" />
+          <div class="card-body">
+            <h3 class="mb-1" style="font-size:1.05rem">Digital Marketing 101</h3>
+            <p class="muted mb-2">Beginner • 24 lessons • 5h</p>
+            <div class="row" style="justify-content:space-between; align-items:center">
+              <span class="rating">★★★★☆</span>
+              <a class="btn btn-primary" href="#signup">Enroll</a>
+            </div>
+          </div>
+        </article>
+        <!-- Card 6 -->
+        <article class="card course-card">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Git & GitHub Essentials" />
+          <div class="card-body">
+            <h3 class="mb-1" style="font-size:1.05rem">Git & GitHub Essentials</h3>
+            <p class="muted mb-2">Beginner • 12 lessons • 3h</p>
+            <div class="row" style="justify-content:space-between; align-items:center">
+              <span class="rating">★★★★★</span>
+              <a class="btn btn-primary" href="#signup">Enroll</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="features">
+    <div class="container">
+      <div class="feature-grid">
+        <div>
+          <h2 class="section-title">Why Learn with Learnify?</h2>
+          <p class="muted">We combine short, high‑impact videos with projects, quizzes, and community support so you can actually apply what you learn.</p>
+        </div>
+        <div class="grid" style="grid-template-columns:repeat(2,1fr); gap:var(--gap)">
+          <div class="feature-item">
+            <div class="icon">🎯</div>
+            <h4 class="mb-1">Project‑based Learning</h4>
+            <p class="muted">Build real projects you can showcase in your portfolio.</p>
+          </div>
+          <div class="feature-item">
+            <div class="icon">⏱️</div>
+            <h4 class="mb-1">Learn at Your Pace</h4>
+            <p class="muted">Lifetime access on mobile & desktop. Pause and resume anytime.</p>
+          </div>
+          <div class="feature-item">
+            <div class="icon">🧑‍🏫</div>
+            <h4 class="mb-1">Mentor Support</h4>
+            <p class="muted">Get answers in the forum and monthly live Q&A sessions.</p>
+          </div>
+          <div class="feature-item">
+            <div class="icon">📜</div>
+            <h4 class="mb-1">Certificates</h4>
+            <p class="muted">Earn shareable certificates to add to your resume.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS (tiny JS for slide change) -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="carousel">
+        <div class="slides">
+          <figure class="slide active">
+            <blockquote>“The React course helped me land my first internship. The projects were super practical.”</blockquote>
+            <figcaption class="muted mt-1">— Aarav Sharma, Pune</figcaption>
+          </figure>
+          <figure class="slide">
+            <blockquote>“Bite‑size lessons + quizzes kept me motivated every day. Loved the certificate.”</blockquote>
+            <figcaption class="muted mt-1">— Riya Patel, Mumbai</figcaption>
+          </figure>
+          <figure class="slide">
+            <blockquote>“Exactly what I needed to switch from Excel to Python for analysis.”</blockquote>
+            <figcaption class="muted mt-1">— Rahul Verma, Bengaluru</figcaption>
+          </figure>
+        </div>
+        <button class="prev" aria-label="Previous">◀</button>
+        <button class="next" aria-label="Next">▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <h2 class="section-title text-center">Simple Pricing</h2>
+      <div class="pricing-grid mt-2">
+        <div class="price-card">
+          <div>
+            <h4 class="muted mb-1">Starter</h4>
+            <h3>₹0 <span class="muted" style="font-size:.9rem">/ forever</span></h3>
+            <ul class="muted">
+              <li>5 free courses</li>
+              <li>Community access</li>
+              <li>No certificates</li>
+            </ul>
+          </div>
+          <a class="btn btn-outline" href="#signup">Get Started</a>
+        </div>
+        <div class="price-card" style="border:2px solid var(--primary)">
+          <div>
+            <h4 style="color:var(--primary)" class="mb-1">Pro • Most Popular</h4>
+            <h3>₹499 <span class="muted" style="font-size:.9rem">/ month</span></h3>
+            <ul class="muted">
+              <li>Unlimited courses</li>
+              <li>Downloadable resources</li>
+              <li>Certificates</li>
+              <li>Monthly mentor Q&A</li>
+            </ul>
+          </div>
+          <a class="btn btn-primary" href="#signup">Start Pro</a>
+        </div>
+        <div class="price-card">
+          <div>
+            <h4 class="muted mb-1">Teams</h4>
+            <h3>₹999 <span class="muted" style="font-size:.9rem">/ user / month</span></h3>
+            <ul class="muted">
+              <li>Team dashboard</li>
+              <li>Progress reports</li>
+              <li>Dedicated support</li>
+            </ul>
+          </div>
+          <a class="btn btn-outline" href="#contact">Talk to Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTRUCTORS -->
+  <section class="instructors">
+    <div class="container">
+      <div class="row" style="align-items:flex-end; justify-content:space-between">
+        <h2 class="section-title">Top Instructors</h2>
+        <a href="#" class="muted">Meet all →</a>
+      </div>
+      <div class="grid mt-2" style="grid-template-columns: repeat(12,1fr); gap:var(--gap)">
+        <article class="card instructor" style="grid-column: span 6">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000&auto=format&fit=crop" alt="Instructor 1" />
+          <div class="card-body">
+            <h4 class="mb-1" style="font-size:1rem">Anaya Kapoor</h4>
+            <p class="muted">Frontend Engineer • React</p>
+          </div>
+        </article>
+        <article class="card instructor" style="grid-column: span 6">
+          <img src="https://images.unsplash.com/photo-1546456073-6712f79251bb?q=80&w=1000&auto=format&fit=crop" alt="Instructor 2" />
+          <div class="card-body">
+            <h4 class="mb-1" style="font-size:1rem">Rohit Menon</h4>
+            <p class="muted">Data Scientist • Python</p>
+          </div>
+        </article>
+        <article class="card instructor" style="grid-column: span 6">
+          <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1000&auto=format&fit=crop" alt="Instructor 3" />
+          <div class="card-body">
+            <h4 class="mb-1" style="font-size:1rem">Ishita Rao</h4>
+            <p class="muted">UI/UX Designer</p>
+          </div>
+        </article>
+        <article class="card instructor" style="grid-column: span 6">
+          <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=1000&auto=format&fit=crop" alt="Instructor 4" />
+          <div class="card-body">
+            <h4 class="mb-1" style="font-size:1rem">Kabir Singh</h4>
+            <p class="muted">Marketing Strategist</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <h2 class="section-title text-center">Frequently Asked Questions</h2>
+      <div class="mt-2">
+        <details open>
+          <summary>How do I get a certificate?</summary>
+          <p class="muted mt-1">Complete all lessons and quizzes in a course, then click “Generate Certificate” on the course page.</p>
+        </details>
+        <details>
+          <summary>Can I learn on mobile?</summary>
+          <p class="muted mt-1">Yes! The platform is fully responsive and works great on phones and tablets.</p>
+        </details>
+        <details>
+          <summary>Do you offer refunds?</summary>
+          <p class="muted mt-1">Yes. If you’re not satisfied within 7 days of purchase, contact support for a full refund.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER / VIDEO CTA -->
+  <section id="contact">
+    <div class="container">
+      <div class="cta-grid">
+        <div>
+          <h2 class="section-title">Join Our Community</h2>
+          <p class="muted">Get weekly tips, free lessons, and new course launches straight to your inbox.</p>
+          <form class="row" onsubmit="event.preventDefault(); alert('Subscribed! (demo)')">
+            <input class="grow" type="email" placeholder="Enter your email" required style="padding:1rem; border-radius:999px; border:1px solid #d0d5dd; min-width:0" />
+            <button class="btn btn-primary" type="submit">Subscribe</button>
+          </form>
+        </div>
+        <div>
+          <div class="ratio">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Intro Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid" style="padding:2rem 0">
+        <div>
+          <h3 style="margin:0; color:#fff">Learnify</h3>
+          <p class="muted" style="color:#cdd2e1">Learn real‑world skills with hands‑on courses and friendly mentors.</p>
+        </div>
+        <div>
+          <h4 style="margin:0; color:#fff; font-size:1rem">Product</h4>
+          <ul class="muted" style="list-style:none; padding:0; margin:.5rem 0 0">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="margin:0; color:#fff; font-size:1rem">Company</h4>
+          <ul class="muted" style="list-style:none; padding:0; margin:.5rem 0 0">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="sep" />
+      <div class="row" style="justify-content:space-between; color:#cdd2e1">
+        <small>© <span id="year"></span> Learnify. All rights reserved.</small>
+        <small>Terms • Privacy • Cookies</small>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Tiny JS for testimonials & year -->
+  <!-- <script>
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+   
+    (function(){
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const prev = document.querySelector('.carousel .prev');
+      const next = document.querySelector('.carousel .next');
+      let i = 0;
+      function show(n){ slides.forEach((s,idx)=> s.classList.toggle('active', idx===n)); }
+      prev.addEventListener('click', ()=>{ i = (i - 1 + slides.length) % slides.length; show(i); });
+      next.addEventListener('click', ()=>{ i = (i + 1) % slides.length; show(i); });
+      // auto-rotate
+      setInterval(()=>{ i = (i + 1) % slides.length; show(i); }, 5000);
+    })();
+  </script> -->
+</body>
+</html>

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Learnify – Online Course Platform</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Google Fonts (optional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand:#0d6efd; /* Bootstrap primary */
+      --ink:#0b1021;
+      --muted:#667085;
+      --paper:#f6f7fb;
+      --card:#ffffff;
+      --accent:#845ef7; /* purple */
+    }
+    html,body{scroll-behavior:smooth}
+    body{font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; background:var(--paper); color:var(--ink)}
+    .navbar{background:#0b1021e6; backdrop-filter:saturate(180%) blur(8px)}
+    .navbar .nav-link{color:#e7e9f3; opacity:.9}
+    .navbar .nav-link:hover{opacity:1}
+    .hero{position:relative; min-height:72vh; display:grid; place-items:center; color:#fff; isolation:isolate}
+    .hero::before{content:""; position:absolute; inset:0; background:url("https://images.unsplash.com/photo-1529101091764-c3526daf38fe?q=80&w=1600&auto=format&fit=crop") center/cover no-repeat; z-index:-2}
+    .hero::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, #0b1021cc, #0b1021cc); z-index:-1}
+    .hero h1{font-family:"Playfair Display",serif; font-weight:700; font-size:clamp(2rem,5vw,3.5rem); line-height:1.1}
+    .shadow-soft{box-shadow:0 10px 30px rgba(16,24,40,.12)}
+    .rounded-2xl{border-radius:1.25rem}
+    .category-pill .nav-link{border-radius:999px}
+    .course-card img{aspect-ratio: 16/9; object-fit:cover}
+    .rating{color:#f59e0b}
+    .section-title{font-family:"Playfair Display",serif; font-weight:700; font-size:clamp(1.6rem,2.5vw,2.25rem)}
+    .feature-icon{width:48px; height:48px; display:inline-flex; align-items:center; justify-content:center; border-radius:12px; background:#eef2ff}
+    footer{background:#0b1021; color:#cdd2e1}
+    .instructor img{aspect-ratio:1/1; object-fit:cover;}
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-semibold text-white" href="#home">Learnify</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" style="filter:invert(1)"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#courses">Courses</a></li>
+          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+          <li class="nav-item d-flex gap-2 ms-lg-2">
+            <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</button>
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" class="hero">
+    <div class="container py-5">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <h1>Upgrade Your Skills, One Course at a Time</h1>
+          <p class="lead mb-4">Interactive lessons, hands‑on projects, and expert instructors. Learn web dev, data, design, and more.</p>
+          <form class="row g-2 shadow-soft p-2 rounded-2 bg-white">
+            <div class="col-12 col-md-8">
+              <input class="form-control form-control-lg" type="search" placeholder="Search for courses e.g. React, Excel, UI/UX" aria-label="Search courses">
+            </div>
+            <div class="col-12 col-md-4 d-grid">
+              <button class="btn btn-primary btn-lg" type="button">Search</button>
+            </div>
+          </form>
+          <div class="mt-3 small text-white-50">Popular: HTML • Python • Power BI • Canva</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- CATEGORIES -->
+  <section class="py-4 bg-white border-bottom">
+    <div class="container">
+      <ul class="nav nav-pills gap-2 category-pill flex-wrap">
+        <li class="nav-item"><a class="nav-link active" href="#courses">All</a></li>
+        <li class="nav-item"><a class="nav-link btn-outline-primary" href="#courses">Web Dev</a></li>
+        <li class="nav-item"><a class="nav-link btn-outline-primary" href="#courses">Data</a></li>
+        <li class="nav-item"><a class="nav-link btn-outline-primary" href="#courses">Design</a></li>
+        <li class="nav-item"><a class="nav-link btn-outline-primary" href="#courses">Marketing</a></li>
+        <li class="nav-item"><a class="nav-link btn-outline-primary" href="#courses">Business</a></li>
+        <li class="nav-item"><a class="nav-link btn-outline-primary" href="#courses">AI/ML</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- COURSES GRID -->
+  <section id="courses" class="py-5">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-end mb-3">
+        <h2 class="section-title mb-0">Trending Courses</h2>
+        <a href="#" class="text-decoration-none">View all →</a>
+      </div>
+      <div class="row g-4">
+        <!-- course 1 -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card course-card border-0 rounded-2xl shadow-soft h-100">
+            <img src="https://images.unsplash.com/photo-1526378722484-bd91ca387e72?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="Python for Data Analysis">
+            <div class="card-body">
+              <h5 class="card-title">Python for Data Analysis</h5>
+              <p class="card-text text-muted small mb-2">Beginner • 28 lessons • 6h</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="rating">★★★★★</span>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#enrollModal">Enroll</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- course 2 -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card course-card border-0 rounded-2xl shadow-soft h-100">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="Modern React from Scratch">
+            <div class="card-body">
+              <h5 class="card-title">Modern React from Scratch</h5>
+              <p class="card-text text-muted small mb-2">Intermediate • 35 lessons • 8h</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="rating">★★★★☆</span>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#enrollModal">Enroll</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- course 3 -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card course-card border-0 rounded-2xl shadow-soft h-100">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="HTML & CSS Mastery">
+            <div class="card-body">
+              <h5 class="card-title">HTML & CSS Mastery</h5>
+              <p class="card-text text-muted small mb-2">Beginner • 22 lessons • 5h</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="rating">★★★★★</span>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#enrollModal">Enroll</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- course 4 -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card course-card border-0 rounded-2xl shadow-soft h-100">
+            <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="UI/UX Design Fundamentals">
+            <div class="card-body">
+              <h5 class="card-title">UI/UX Design Fundamentals</h5>
+              <p class="card-text text-muted small mb-2">Beginner • 18 lessons • 4h</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="rating">★★★★☆</span>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#enrollModal">Enroll</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- course 5 -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card course-card border-0 rounded-2xl shadow-soft h-100">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="Digital Marketing 101">
+            <div class="card-body">
+              <h5 class="card-title">Digital Marketing 101</h5>
+              <p class="card-text text-muted small mb-2">Beginner • 24 lessons • 5h</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="rating">★★★★☆</span>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#enrollModal">Enroll</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- course 6 -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="card course-card border-0 rounded-2xl shadow-soft h-100">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="Git & GitHub Essentials">
+            <div class="card-body">
+              <h5 class="card-title">Git & GitHub Essentials</h5>
+              <p class="card-text text-muted small mb-2">Beginner • 12 lessons • 3h</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="rating">★★★★★</span>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#enrollModal">Enroll</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="py-5 bg-white">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-5">
+          <h2 class="section-title">Why Learn with Learnify?</h2>
+          <p class="lead">We combine short, high‑impact videos with projects, quizzes, and community support so you can actually apply what you learn.</p>
+        </div>
+        <div class="col-lg-7">
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="p-4 rounded-2xl shadow-soft h-100">
+                <div class="feature-icon mb-3">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 4h18v14H3z" opacity=".2"/><path d="M21 2H3a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h6v2H7v2h10v-2h-2v-2h6a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zm-1 16H4V4h16v14z"/></svg>
+                </div>
+                <h6 class="mb-1">Project‑based Learning</h6>
+                <p class="text-muted mb-0">Build real projects you can showcase in your portfolio.</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="p-4 rounded-2xl shadow-soft h-100">
+                <div class="feature-icon mb-3">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.134 2 5 5.134 5 9c0 6 7 13 7 13s7-7 7-13c0-3.866-3.134-7-7-7zM12 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
+                </div>
+                <h6 class="mb-1">Learn at Your Pace</h6>
+                <p class="text-muted mb-0">Lifetime access on mobile & desktop. Pause and resume anytime.</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="p-4 rounded-2xl shadow-soft h-100">
+                <div class="feature-icon mb-3">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 4h14v4H5z" opacity=".2"/><path d="M19 2H5a2 2 0 0 0-2 2v16l4-4h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
+                </div>
+                <h6 class="mb-1">Mentor Support</h6>
+                <p class="text-muted mb-0">Get answers in the forum and monthly live Q&A sessions.</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="p-4 rounded-2xl shadow-soft h-100">
+                <div class="feature-icon mb-3">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 11h18v10H3z" opacity=".2"/><path d="M21 9H3a2 2 0 0 0-2 2v10h2v-4h18v4h2V11a2 2 0 0 0-2-2zM5 6h14v2H5z"/></svg>
+                </div>
+                <h6 class="mb-1">Certificates</h6>
+                <p class="text-muted mb-0">Earn shareable certificates to add to your resume.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="py-5">
+    <div class="container">
+      <div id="testimonials" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner rounded-2xl shadow-soft bg-white p-4 p-md-5">
+          <div class="carousel-item active">
+            <figure class="text-center m-0">
+              <blockquote class="blockquote">“The React course helped me land my first internship. The projects were super practical.”</blockquote>
+              <figcaption class="blockquote-footer mt-2">Aarav Sharma, Pune</figcaption>
+            </figure>
+          </div>
+          <div class="carousel-item">
+            <figure class="text-center m-0">
+              <blockquote class="blockquote">“Bite‑size lessons + quizzes kept me motivated every day. Loved the certificate.”</blockquote>
+              <figcaption class="blockquote-footer mt-2">Riya Patel, Mumbai</figcaption>
+            </figure>
+          </div>
+          <div class="carousel-item">
+            <figure class="text-center m-0">
+              <blockquote class="blockquote">“Exactly what I needed to switch from Excel to Python for analysis.”</blockquote>
+              <figcaption class="blockquote-footer mt-2">Rahul Verma, Bengaluru</figcaption>
+            </figure>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonials" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonials" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="py-5 bg-white">
+    <div class="container">
+      <h2 class="section-title text-center mb-4">Simple Pricing</h2>
+      <div class="row g-4 align-items-stretch">
+        <div class="col-md-4">
+          <div class="card h-100 shadow-soft rounded-2xl border-0">
+            <div class="card-body p-4">
+              <h6 class="text-uppercase text-muted mb-1">Starter</h6>
+              <h3 class="mb-3">₹0<span class="fs-6 text-muted"> / forever</span></h3>
+              <ul class="list-unstyled small">
+                <li>✓ 5 free courses</li>
+                <li>✓ Community access</li>
+                <li>— Certificates</li>
+              </ul>
+              <button class="btn btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#signupModal">Get Started</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-soft rounded-2xl border-0 border-primary border-2">
+            <div class="card-body p-4">
+              <h6 class="text-uppercase text-primary mb-1">Pro • Most Popular</h6>
+              <h3 class="mb-3">₹499<span class="fs-6 text-muted"> / month</span></h3>
+              <ul class="list-unstyled small">
+                <li>✓ Unlimited courses</li>
+                <li>✓ Downloadable resources</li>
+                <li>✓ Certificates</li>
+                <li>✓ Monthly mentor Q&A</li>
+              </ul>
+              <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#signupModal">Start Pro</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-soft rounded-2xl border-0">
+            <div class="card-body p-4">
+              <h6 class="text-uppercase text-muted mb-1">Teams</h6>
+              <h3 class="mb-3">₹999<span class="fs-6 text-muted"> / user / month</span></h3>
+              <ul class="list-unstyled small">
+                <li>✓ Team dashboard</li>
+                <li>✓ Progress reports</li>
+                <li>✓ Dedicated support</li>
+              </ul>
+              <a class="btn btn-outline-primary w-100" href="#contact">Talk to Sales</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTRUCTORS -->
+  <section class="py-5">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-end mb-3">
+        <h2 class="section-title mb-0">Top Instructors</h2>
+        <a href="#" class="text-decoration-none">Meet all →</a>
+      </div>
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card instructor border-0 shadow-soft rounded-2xl h-100">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000&auto=format&fit=crop" alt="Instructor 1">
+            <div class="card-body">
+              <h6 class="mb-1">Anaya Kapoor</h6>
+              <p class="text-muted small mb-0">Frontend Engineer • React</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card instructor border-0 shadow-soft rounded-2xl h-100">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1546456073-6712f79251bb?q=80&w=1000&auto=format&fit=crop" alt="Instructor 2">
+            <div class="card-body">
+              <h6 class="mb-1">Rohit Menon</h6>
+              <p class="text-muted small mb-0">Data Scientist • Python</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card instructor border-0 shadow-soft rounded-2xl h-100">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1000&auto=format&fit=crop" alt="Instructor 3">
+            <div class="card-body">
+              <h6 class="mb-1">Ishita Rao</h6>
+              <p class="text-muted small mb-0">UI/UX Designer</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card instructor border-0 shadow-soft rounded-2xl h-100">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=1000&auto=format&fit=crop" alt="Instructor 4">
+            <div class="card-body">
+              <h6 class="mb-1">Kabir Singh</h6>
+              <p class="text-muted small mb-0">Marketing Strategist</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-5 bg-white">
+    <div class="container">
+      <h2 class="section-title text-center mb-4">Frequently Asked Questions</h2>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="q1">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1" aria-expanded="true" aria-controls="a1">How do I get a certificate?</button>
+              </h2>
+              <div id="a1" class="accordion-collapse collapse show" aria-labelledby="q1" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">Complete all lessons and quizzes in a course, then click “Generate Certificate” on the course page.</div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="q2">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2" aria-expanded="false" aria-controls="a2">Can I learn on mobile?</button>
+              </h2>
+              <div id="a2" class="accordion-collapse collapse" aria-labelledby="q2" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">Yes! The platform is fully responsive and works great on phones and tablets.</div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="q3">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a3" aria-expanded="false" aria-controls="a3">Do you offer refunds?</button>
+              </h2>
+              <div id="a3" class="accordion-collapse collapse" aria-labelledby="q3" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">Yes. If you’re not satisfied within 7 days of purchase, contact support for a full refund.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER / CONTACT CTA -->
+  <section id="contact" class="py-5">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6">
+          <h2 class="section-title">Join Our Community</h2>
+          <p class="mb-3">Get weekly tips, free lessons, and new course launches straight to your inbox.</p>
+          <form class="row gy-2 gx-2">
+            <div class="col-12 col-md-7">
+              <label class="visually-hidden" for="email">Email</label>
+              <input id="email" type="email" class="form-control form-control-lg" placeholder="Enter your email" required>
+            </div>
+            <div class="col-12 col-md-5 d-grid">
+              <button class="btn btn-primary btn-lg" type="submit">Subscribe</button>
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-6">
+          <div class="ratio ratio-16x9 rounded-2xl overflow-hidden shadow-soft">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Intro Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="pt-5 pb-4">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <h5 class="text-white">Learnify</h5>
+          <p class="text-white-50">Learn real‑world skills with hands‑on courses and friendly mentors.</p>
+        </div>
+        <div class="col-md-3">
+          <h6 class="text-white">Product</h6>
+          <ul class="list-unstyled text-white-50">
+            <li><a class="text-white-50 text-decoration-none" href="#features">Features</a></li>
+            <li><a class="text-white-50 text-decoration-none" href="#pricing">Pricing</a></li>
+            <li><a class="text-white-50 text-decoration-none" href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h6 class="text-white">Company</h6>
+          <ul class="list-unstyled text-white-50">
+            <li><a class="text-white-50 text-decoration-none" href="#">About</a></li>
+            <li><a class="text-white-50 text-decoration-none" href="#">Careers</a></li>
+            <li><a class="text-white-50 text-decoration-none" href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="border-secondary opacity-25 my-4">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <small class="text-white-50">© <span id="year"></span> Learnify. All rights reserved.</small>
+        <div class="small text-white-50">Terms • Privacy • Cookies</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LOGIN MODAL -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Log In</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="row g-3">
+            <div class="col-12">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-control" required>
+            </div>
+            <div class="col-12 d-grid">
+              <button class="btn btn-primary" type="submit">Log In</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIGNUP MODAL -->
+  <div class="modal fade" id="signupModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Create Your Account</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">First name</label>
+              <input type="text" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Last name</label>
+              <input type="text" class="form-control" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-control" required>
+            </div>
+            <div class="col-12 d-grid">
+              <button class="btn btn-primary" type="submit">Create Account</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENROLL MODAL (reused by course cards) -->
+  <div class="modal fade" id="enrollModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Enroll in Course</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Sign in or create an account to enroll and start learning instantly.</p>
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary" data-bs-target="#signupModal" data-bs-toggle="modal">Create Account</button>
+            <button class="btn btn-outline-primary" data-bs-target="#loginModal" data-bs-toggle="modal">Log In</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
